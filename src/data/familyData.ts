@@ -18,14 +18,14 @@ export const mainFamily: Family = {
   id: 'main',
   father: {
     id: 'father-main',
-    name: 'Bapak Hasan',
+    name: 'Bapuk Kanyang Mama',
     photo: '/placeholder.svg',
     birthYear: '1950',
     role: 'parent',
   },
   mother: {
     id: 'mother-main',
-    name: 'Ibu Fatimah',
+    name: 'Bapuk Kanyang Nina',
     photo: '/placeholder.svg',
     birthYear: '1955',
     role: 'parent',
