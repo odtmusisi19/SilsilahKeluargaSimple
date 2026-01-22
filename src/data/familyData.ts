@@ -184,7 +184,10 @@ export const allFamilies: Record<string, Family> = {
     id: 'anak-rasilah-1',
     father: { id: 'anak-rasilah-1', name: 'Satriadi Gotama', photo: '/placeholder.svg', birthYear: '2001', role: 'parent' },
     mother: { id: 'istri-satriadi', name: 'Sahni', photo: '/placeholder.svg', birthYear: '2003', role: 'parent' },
-    children: [{ id: 'anak-satriadi-1', name: 'Ogi', photo: '/placeholder.svg', birthYear: '2023', role: 'child' }],
+    children: [
+      { id: 'anak-satriadi-1', name: 'Ogi Darma Tena', photo: 'https://avatars.githubusercontent.com/u/64591304?v=4', birthYear: '2001', role: 'child' },
+      { id: 'anak-satriadi-2', name: 'Icha Ulan Dari', photo: '/placeholder.svg', birthYear: '2007', role: 'child' },
+    ],
   },
   'anak-rasilah-2': {
     id: 'anak-rasilah-2',
@@ -213,7 +216,7 @@ export const allFamilies: Record<string, Family> = {
   },
   'anak-satriadi-1': {
     id: 'anak-satriadi-1',
-    father: { id: 'anak-satriadi-1', name: 'Ogi Darma Tena', photo: '/placeholder.svg', birthYear: '2001', role: 'parent' },
+    father: { id: 'anak-satriadi-1', name: 'Ogi Darma Tena', photo: 'https://avatars.githubusercontent.com/u/64591304?v=4', birthYear: '2001', role: 'parent' },
     mother: { id: 'anak-suwar-3', name: 'Maya Trisandi', photo: '/placeholder.svg', birthYear: '1999', role: 'parent' },
     children: [{ id: 'ogi-1', name: 'Junior', photo: '/placeholder.svg', birthYear: '2023', role: 'child' }],
   },
