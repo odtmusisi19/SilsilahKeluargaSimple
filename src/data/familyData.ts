@@ -158,11 +158,53 @@ export const childFamilies: Record<string, Family> = {
   },
 };
 
-export const getChildFamily = (childId: string): Family | null => {
-  return childFamilies[childId] || null;
+// Contoh data cucu yang sudah berkeluarga (bisa ditambah bebas)
+export const allFamilies: Record<string, Family> = {
+  ...childFamilies,
+  // Contoh: Rizki (cucu dari Ahmad) sudah berkeluarga
+  'grandchild-1-1': {
+    id: 'grandchild-1-1',
+    father: { id: 'grandchild-1-1', name: 'Rizki', photo: '/placeholder.svg', birthYear: '2000', role: 'parent' },
+    mother: { id: 'spouse-gc-1-1', name: 'Anisa', photo: '/placeholder.svg', birthYear: '2002', role: 'parent' },
+    children: [
+      { id: 'greatgc-1-1-1', name: 'Azzam', photo: '/placeholder.svg', birthYear: '2022', role: 'child' },
+      { id: 'greatgc-1-1-2', name: 'Bilqis', photo: '/placeholder.svg', birthYear: '2024', role: 'child' },
+    ]
+  },
+  // Contoh: Aditya (cucu dari Siti) sudah berkeluarga
+  'grandchild-2-1': {
+    id: 'grandchild-2-1',
+    father: { id: 'grandchild-2-1', name: 'Aditya', photo: '/placeholder.svg', birthYear: '2001', role: 'parent' },
+    mother: { id: 'spouse-gc-2-1', name: 'Cantika', photo: '/placeholder.svg', birthYear: '2003', role: 'parent' },
+    children: [
+      { id: 'greatgc-2-1-1', name: 'Daffa', photo: '/placeholder.svg', birthYear: '2023', role: 'child' },
+    ]
+  },
 };
 
-export const getChildName = (childId: string): string => {
-  const child = mainFamily.children.find(c => c.id === childId);
-  return child?.name || '';
+export const getFamily = (memberId: string): Family | null => {
+  return allFamilies[memberId] || null;
 };
+
+export const hasFamily = (memberId: string): boolean => {
+  return memberId in allFamilies;
+};
+
+export const getMemberName = (memberId: string): string => {
+  // Cari di semua keluarga
+  for (const family of Object.values(allFamilies)) {
+    if (family.father.id === memberId) return family.father.name;
+    if (family.mother.id === memberId) return family.mother.name;
+    const child = family.children.find(c => c.id === memberId);
+    if (child) return child.name;
+  }
+  // Cari di keluarga utama
+  if (mainFamily.father.id === memberId) return mainFamily.father.name;
+  if (mainFamily.mother.id === memberId) return mainFamily.mother.name;
+  const mainChild = mainFamily.children.find(c => c.id === memberId);
+  return mainChild?.name || '';
+};
+
+// Legacy functions for backward compatibility
+export const getChildFamily = getFamily;
+export const getChildName = getMemberName;

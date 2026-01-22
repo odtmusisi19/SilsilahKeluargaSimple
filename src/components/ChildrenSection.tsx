@@ -1,13 +1,14 @@
-import { FamilyMember } from '@/data/familyData';
+import { FamilyMember, hasFamily } from '@/data/familyData';
 import FamilyMemberCard from './FamilyMemberCard';
 
 interface ChildrenSectionProps {
   children: FamilyMember[];
   isClickable?: boolean;
   basePath?: string;
+  checkHasFamily?: boolean;
 }
 
-const ChildrenSection = ({ children, isClickable = false, basePath = '/keluarga' }: ChildrenSectionProps) => {
+const ChildrenSection = ({ children, isClickable = false, basePath = '/keluarga', checkHasFamily = false }: ChildrenSectionProps) => {
   // Split children into two rows for better display
   const firstRow = children.slice(0, 6);
   const secondRow = children.slice(6);
@@ -27,8 +28,8 @@ const ChildrenSection = ({ children, isClickable = false, basePath = '/keluarga'
               <div className={`fade-in-delayed stagger-${index + 5}`}>
                 <FamilyMemberCard 
                   member={child} 
-                  isClickable={isClickable}
-                  linkTo={isClickable ? `${basePath}/${child.id}` : undefined}
+                  isClickable={checkHasFamily ? hasFamily(child.id) : isClickable}
+                  linkTo={(checkHasFamily ? hasFamily(child.id) : isClickable) ? `${basePath}/${child.id}` : undefined}
                   size="medium"
                 />
               </div>
@@ -53,8 +54,8 @@ const ChildrenSection = ({ children, isClickable = false, basePath = '/keluarga'
                   <div className={`fade-in-delayed stagger-${index + 11}`}>
                     <FamilyMemberCard 
                       member={child} 
-                      isClickable={isClickable}
-                      linkTo={isClickable ? `${basePath}/${child.id}` : undefined}
+                      isClickable={checkHasFamily ? hasFamily(child.id) : isClickable}
+                      linkTo={(checkHasFamily ? hasFamily(child.id) : isClickable) ? `${basePath}/${child.id}` : undefined}
                       size="medium"
                     />
                   </div>
